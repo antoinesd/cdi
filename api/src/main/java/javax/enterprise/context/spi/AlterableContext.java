@@ -3,6 +3,7 @@ package javax.enterprise.context.spi;
 import javax.enterprise.context.ContextNotActiveException;
 
 /**
+ * //TODO: See later for CDI light inclusion
  * <p>
  * Provides an operation for obtaining and destroying contextual instances with a particular scope of any contextual type. Any
  * instance of {@code Context} is called a context object.

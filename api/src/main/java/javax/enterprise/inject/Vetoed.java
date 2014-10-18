@@ -7,6 +7,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 
+ * //TODO:to investigate later (to keep if CDI light support scanning)
+ * 
  * <p>
  * Veto the processing of the class. Any beans or observer methods defined by this class will not be installed.
  * </p>

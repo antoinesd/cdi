@@ -17,6 +17,9 @@
 package javax.enterprise.event;
 
 /**
+ * 
+ * //TODO:cannot be remove because of bytecode incompatibility
+ * 
  * <p>
  * Distinguishes the various kinds of transactional {@linkplain javax.enterprise.event.Observes observer methods} from regular
  * observer methods which are notified immediately.

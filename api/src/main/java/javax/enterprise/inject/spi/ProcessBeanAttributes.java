@@ -1,14 +1,12 @@
 package javax.enterprise.inject.spi;
 
-import javax.enterprise.inject.New;
-
 /**
  * <p>
  * The container fires an event of this type for each enabled bean, interceptor or decorator deployed in a bean archive before
  * registering the {@link javax.enterprise.inject.spi.Bean} object.
  * </p>
  * <p>
- * No event is fired for {@link New} qualified beans.
+ * No event is fired for {@link javax.enterprise.inject.New} qualified beans.
  * </p>
  * <p>
  * If any observer method of a {@code ProcessBeanAttributes} event throws an exception, the exception is treated as a definition

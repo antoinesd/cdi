@@ -22,8 +22,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Set;
 
-import javax.el.ELResolver;
-import javax.el.ExpressionFactory;
+
 import javax.enterprise.context.ContextNotActiveException;
 import javax.enterprise.context.spi.Context;
 import javax.enterprise.context.spi.Contextual;
@@ -246,47 +245,8 @@ public interface BeanManager {
      */
     public <T> Set<ObserverMethod<? super T>> resolveObserverMethods(T event, Annotation... qualifiers);
 
-    /**
-     * Return an ordered list of {@linkplain Decorator decorators} for a set of bean types and a set of qualifiers and which are
-     * enabled in the module or library containing the class into which the <tt>BeanManager</tt> was injected or the Java EE
-     * component from whose JNDI environment namespace the <tt>BeanManager</tt> was obtained.
-     *
-     * <p/>
-     * Note that when called during invocation of an {@link AfterBeanDiscovery} event observer, 
-     * this method will only return decorators discovered by the container before the {@link AfterBeanDiscovery} event is fired.
-     * 
-     * @param types the set of bean types of the decorated bean
-     * @param qualifiers the qualifiers declared by the decorated bean
-     * @return the resulting set of {@linkplain Decorator decorators}
-     * @throws IllegalArgumentException if the set of bean types is empty
-     * @throws IllegalArgumentException if an annotation which is not a binding type is passed
-     * @throws IllegalArgumentException if two instances of the same binding type are passed
-     * @throws IllegalStateException if called during application initialization, before the {@link AfterBeanDiscovery}
-     *         event is fired.
-     */
-    public List<Decorator<?>> resolveDecorators(Set<Type> types, Annotation... qualifiers);
 
-    /**
-     * Return an ordered list of enabled {@linkplain Interceptor interceptors} for a set of interceptor bindings and a type of
-     * interception and which are enabled in the module or library containing the class into which the <tt>BeanManager</tt> was
-     * injected or the Java EE component from whose JNDI environment namespace the <tt>BeanManager</tt> was obtained.
-     *
-     * <p/>
-     * Note that when called during invocation of an {@link AfterBeanDiscovery} event observer, 
-     * this method will only return interceptors discovered by the container before the {@link AfterBeanDiscovery} event is 
-     * fired.
-     * 
-     * @param type the type of the interception
-     * @param interceptorBindings the interceptor bindings
-     * @return the resulting set of {@linkplain Interceptor interceptors}
-     * @throws IllegalArgumentException if no interceptor binding type is given
-     * @throws IllegalArgumentException if two instances of the same interceptor binding type are given
-     * @throws IllegalArgumentException if an instance of an annotation that is not an interceptor binding type is given
-     * @throws IllegalStateException if called during application initialization, before the {@link AfterBeanDiscovery}
-     *         event is fired.
-     */
-    public List<Interceptor<?>> resolveInterceptors(InterceptionType type, Annotation... interceptorBindings);
-
+    
     /**
      * Test the given annotation type to determine if it is a {@linkplain javax.enterprise.context scope type}.
      * 
@@ -295,22 +255,9 @@ public interface BeanManager {
      */
     public boolean isScope(Class<? extends Annotation> annotationType);
 
-    /**
-     * Test the given annotation type to determine if it is a {@linkplain javax.enterprise.context normal scope type}.
-     * 
-     * @param annotationType the annotation type
-     * @return <tt>true</tt> if the annotation type is a {@linkplain javax.enterprise.context normal scope type}
-     */
-    public boolean isNormalScope(Class<? extends Annotation> annotationType);
+   
 
-    /**
-     * Test the given annotation type to determine if it is a passivating {@linkplain javax.enterprise.context scope type}.
-     * 
-     * @param annotationType the annotation type
-     * @return <tt>true</tt> if the annotation type is a passivating scope type
-     */
-    public boolean isPassivatingScope(Class<? extends Annotation> annotationType);
-
+   
     /**
      * Test the given annotation type to determine if it is a {@linkplain javax.inject.Qualifier qualifier type}.
      * 
@@ -319,16 +266,7 @@ public interface BeanManager {
      */
     public boolean isQualifier(Class<? extends Annotation> annotationType);
 
-    /**
-     * Test the given annotation type to determine if it is an {@linkplain javax.interceptor.InterceptorBinding interceptor
-     * binding type} .
-     * 
-     * @param annotationType the annotation to test
-     * @return <tt>true</tt> if the annotation type is a {@linkplain javax.interceptor.InterceptorBinding interceptor binding
-     *         type}
-     */
-    public boolean isInterceptorBinding(Class<? extends Annotation> annotationType);
-
+  
     /**
      * Test the given annotation type to determine if it is a {@linkplain javax.enterprise.inject.Stereotype stereotype}.
      * 
@@ -336,15 +274,7 @@ public interface BeanManager {
      * @return <tt>true</tt> if the annotation type is a {@linkplain javax.enterprise.inject.Stereotype stereotype}
      */
     public boolean isStereotype(Class<? extends Annotation> annotationType);
-
-    /**
-     * Obtains the set of meta-annotations for a certain {@linkplain javax.interceptor.InterceptorBinding interceptor binding
-     * type} .
-     * 
-     * @param bindingType the {@linkplain javax.interceptor.InterceptorBinding interceptor binding type}
-     * @return the set of meta-annotations
-     */
-    public Set<Annotation> getInterceptorBindingDefinition(Class<? extends Annotation> bindingType);
+    
 
     /**
      * Obtains meta-annotations for a certain {@linkplain javax.enterprise.inject.Stereotype stereotype}.
@@ -364,17 +294,7 @@ public interface BeanManager {
      * @since 1.1
      */
     public boolean areQualifiersEquivalent(Annotation qualifier1, Annotation qualifier2);
-
-    /**
-     * Determine if two interceptor bindings are considered equivalent for the purposes of typesafe resolution, taking into
-     * account any members annotated with {@link Nonbinding}.
-     * 
-     * @param interceptorBinding1 an interceptor binding to check
-     * @param interceptorBinding2 an interceptor binding to check
-     * @return true if the two interceptor bindings are equivalent, otherwise false
-     * @since 1.1
-     */
-    public boolean areInterceptorBindingsEquivalent(Annotation interceptorBinding1, Annotation interceptorBinding2);
+    
 
     /**
      * Determine the hash code of a qualifier, using the JDK algorithm for determining an annotation hash code, ignoring any
@@ -385,16 +305,7 @@ public interface BeanManager {
      * @since 1.1
      */
     public int getQualifierHashCode(Annotation qualifier);
-
-    /**
-     * Determine the hash code of an interceptor binding, using the JDK algorithm for determining an annotation hash code,
-     * ignoring any members annotated with {@link Nonbinding}.
-     * 
-     * @param interceptorBinding the interceptor binding to consider
-     * @return the hashCode for the interceptor binding
-     * @since 1.1
-     */
-    public int getInterceptorBindingHashCode(Annotation interceptorBinding);
+    
 
     /**
      * Obtains an active {@linkplain javax.enterprise.context.spi.Context context object} for the given
@@ -407,23 +318,7 @@ public interface BeanManager {
      */
     public Context getContext(Class<? extends Annotation> scopeType);
 
-    /**
-     * Returns a {@link javax.el.ELResolver} that resolves beans by EL name.
-     */
-    public ELResolver getELResolver();
-
-    /**
-     * Returns a wrapper {@link javax.el.ExpressionFactory} that delegates {@link javax.el.MethodExpression} and
-     * {@link javax.el.ValueExpression} creation to the given {@link javax.el.ExpressionFactory}. When a Unified EL expression
-     * is evaluated using a {@link javax.el.MethodExpression} or {@link javax.el.ValueExpression} returned by the wrapper
-     * {@link javax.el.ExpressionFactory}, the container handles destruction of objects with scope
-     * {@link javax.enterprise.context.Dependent}.
-     * 
-     * 
-     * @param expressionFactory the {@link javax.el.ExpressionFactory} to wrap
-     * @return the wrapped {@link javax.el.ExpressionFactory}
-     */
-    public ExpressionFactory wrapExpressionFactory(ExpressionFactory expressionFactory);
+ 
 
     /**
      * Obtain an {@link AnnotatedType} that may be used to read the annotations of the given class or interface.

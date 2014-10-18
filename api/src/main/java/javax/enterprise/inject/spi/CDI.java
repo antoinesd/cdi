@@ -23,6 +23,8 @@ import javax.enterprise.inject.Instance;
  */
 public abstract class CDI<T> implements Instance<T> {
 
+    //TODO: add method to get CDI Mode = light,Full,JavaEE
+    
     protected static volatile Set<CDIProvider> discoveredProviders = null;
     protected static volatile CDIProvider configuredProvider = null;
 

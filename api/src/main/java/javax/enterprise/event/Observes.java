@@ -97,6 +97,7 @@ public @interface Observes {
     public Reception notifyObserver() default Reception.ALWAYS;
 
     /**
+     * //TODO:cannot be remove because of bytecode incompatibility
      * <p>
      * Specifies {@linkplain javax.enterprise.event.Reception at what time the observer method is notified}.
      * </p>

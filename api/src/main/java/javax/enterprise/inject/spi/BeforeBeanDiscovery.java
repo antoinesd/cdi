@@ -18,7 +18,6 @@ package javax.enterprise.inject.spi;
 
 import java.lang.annotation.Annotation;
 
-import javax.enterprise.context.NormalScope;
 import javax.enterprise.inject.Stereotype;
 import javax.inject.Qualifier;
 import javax.inject.Scope;
