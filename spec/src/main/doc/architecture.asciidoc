@@ -100,6 +100,10 @@ Bean Validation provides a unified way of declaring and defining constraints on 
 
 The Bean Validation specification defines beans for Bean Validation managed objects including +Validator+ and +ValidatorFactory+. A number of Bean Validation managed instances, including ++ConstraintValidator++ s can take advantage of dependency injection. Bean Validation also provides support for method parameter validation on any bean.
 
+==== Relationship to Security
+
+==== Relationship to MVC
+
 === Introductory examples
 
 The following examples demonstrate the use of lifecycle contexts and dependency injection.
