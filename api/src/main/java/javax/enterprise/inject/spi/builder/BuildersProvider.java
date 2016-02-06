@@ -71,5 +71,11 @@ public interface BuildersProvider {
      */
     <T> ObserverMethodBuilder<T> getObserverMethodBuilder(Class<T> type);
 
+    /**
+     *
+     * @return
+     */
+    CDIContainerBuilder getCDIContainerBuilder();
+
 
 }
